@@ -14,6 +14,7 @@ import NumberBaseConverter from "./pages/NumberBaseConverter";
 import XmlCsvFormatter from "./pages/XmlCsvFormatter";
 import ColorTools from "./pages/ColorTools";
 import MarkdownPreviewer from "./pages/MarkdownPreviewer";
+import SqlFormatter from "./pages/SqlFormatter";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -30,6 +31,7 @@ const BUILT_PATHS = [
   "/xml-csv",
   "/color",
   "/markdown",
+  "/sql",
 ];
 
 export default function App() {
@@ -50,6 +52,7 @@ export default function App() {
           <Route path="/xml-csv" element={<XmlCsvFormatter />} />
           <Route path="/color" element={<ColorTools />} />
           <Route path="/markdown" element={<MarkdownPreviewer />} />
+          <Route path="/sql" element={<SqlFormatter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
