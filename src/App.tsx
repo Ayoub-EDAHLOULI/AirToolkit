@@ -11,6 +11,7 @@ import DiffTool from "./pages/DiffTool";
 import TimestampConverter from "./pages/TimestampConverter";
 import CaseConverter from "./pages/CaseConverter";
 import NumberBaseConverter from "./pages/NumberBaseConverter";
+import XmlCsvFormatter from "./pages/XmlCsvFormatter";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -24,6 +25,7 @@ const BUILT_PATHS = [
   "/timestamp",
   "/case",
   "/base",
+  "/xml-csv",
 ];
 
 export default function App() {
@@ -41,6 +43,7 @@ export default function App() {
           <Route path="/timestamp" element={<TimestampConverter />} />
           <Route path="/case" element={<CaseConverter />} />
           <Route path="/base" element={<NumberBaseConverter />} />
+          <Route path="/xml-csv" element={<XmlCsvFormatter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
