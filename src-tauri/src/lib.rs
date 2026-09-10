@@ -1,7 +1,7 @@
 use tauri::{Manager, Theme};
 
 #[tauri::command]
-fn set_window_theme(window: tauri::Window, theme: String) {
+fn set_window_theme(window: tauri::WebviewWindow, theme: String) {
     let theme = match theme.as_str() {
         "dark" => Some(Theme::Dark),
         _ => Some(Theme::Light),

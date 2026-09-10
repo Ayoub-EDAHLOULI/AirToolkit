@@ -13,6 +13,7 @@
     --danger: #d92d20;
     --border: #e2e5ea;
     --inputBg: #eef0f3;
+    color-scheme: light;
   }
 
   .dark {
@@ -25,6 +26,7 @@
     --danger: #ff453a;
     --border: #38383a;
     --inputBg: #2c2c2e;
+    color-scheme: dark;
   }
 
   html,
@@ -45,21 +47,22 @@
       sans-serif;
   }
 
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  /* Applied globally so we do not have to add a class to every textarea/overflow div */
+  ::-webkit-scrollbar {
+    width: 8px; /* Increased slightly from 6px for easier clicking on desktop */
+    height: 8px;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background-color: var(--border);
     border-radius: 10px;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background-color: var(--subText);
   }
 }
