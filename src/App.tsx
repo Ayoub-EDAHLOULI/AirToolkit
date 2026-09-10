@@ -17,6 +17,7 @@ import MarkdownPreviewer from "./pages/MarkdownPreviewer";
 import SqlFormatter from "./pages/SqlFormatter";
 import FakeDataGenerator from "./pages/FakeDataGenerator";
 import QrCodeGenerator from "./pages/QrCodeGenerator";
+import CronExplainer from "./pages/CronExplainer";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -36,6 +37,7 @@ const BUILT_PATHS = [
   "/sql",
   "/fake-data",
   "/qr",
+  "/cron",
 ];
 
 export default function App() {
@@ -59,6 +61,7 @@ export default function App() {
           <Route path="/sql" element={<SqlFormatter />} />
           <Route path="/fake-data" element={<FakeDataGenerator />} />
           <Route path="/qr" element={<QrCodeGenerator />} />
+          <Route path="/cron" element={<CronExplainer />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

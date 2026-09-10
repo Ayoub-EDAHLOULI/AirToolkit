@@ -14,6 +14,7 @@ import {
   Database,
   Sparkles,
   QrCode,
+  CalendarClock,
   type LucideIcon,
 } from "lucide-react";
 
@@ -39,4 +40,5 @@ export const tools: ToolDef[] = [
   { path: "/sql", label: "SQL Formatter", icon: Database },
   { path: "/fake-data", label: "Fake Data Generator", icon: Sparkles },
   { path: "/qr", label: "QR Code Generator", icon: QrCode },
+  { path: "/cron", label: "Cron Explainer", icon: CalendarClock },
 ];
