@@ -13,6 +13,7 @@ import CaseConverter from "./pages/CaseConverter";
 import NumberBaseConverter from "./pages/NumberBaseConverter";
 import XmlCsvFormatter from "./pages/XmlCsvFormatter";
 import ColorTools from "./pages/ColorTools";
+import MarkdownPreviewer from "./pages/MarkdownPreviewer";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -28,6 +29,7 @@ const BUILT_PATHS = [
   "/base",
   "/xml-csv",
   "/color",
+  "/markdown",
 ];
 
 export default function App() {
@@ -47,6 +49,7 @@ export default function App() {
           <Route path="/base" element={<NumberBaseConverter />} />
           <Route path="/xml-csv" element={<XmlCsvFormatter />} />
           <Route path="/color" element={<ColorTools />} />
+          <Route path="/markdown" element={<MarkdownPreviewer />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

@@ -75,4 +75,99 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--subText);
   }
+
+  .markdown-preview {
+    color: var(--text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .markdown-preview h1,
+  .markdown-preview h2,
+  .markdown-preview h3,
+  .markdown-preview h4 {
+    font-weight: 700;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
+
+  .markdown-preview h1 {
+    font-size: 1.5em;
+  }
+
+  .markdown-preview h2 {
+    font-size: 1.25em;
+  }
+
+  .markdown-preview h3 {
+    font-size: 1.1em;
+  }
+
+  .markdown-preview p {
+    margin-bottom: 0.75em;
+  }
+
+  .markdown-preview ul,
+  .markdown-preview ol {
+    margin-bottom: 0.75em;
+    padding-left: 1.5em;
+  }
+
+  .markdown-preview ul {
+    list-style: disc;
+  }
+
+  .markdown-preview ol {
+    list-style: decimal;
+  }
+
+  .markdown-preview a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  .markdown-preview blockquote {
+    border-left: 3px solid var(--border);
+    padding-left: 1em;
+    color: var(--subText);
+    margin-bottom: 0.75em;
+  }
+
+  .markdown-preview code {
+    font-family: ui-monospace, monospace;
+    background-color: var(--inputBg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .markdown-preview pre {
+    background-color: var(--inputBg);
+    border-radius: 8px;
+    padding: 0.75em 1em;
+    overflow-x: auto;
+    margin-bottom: 0.75em;
+  }
+
+  .markdown-preview pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .markdown-preview table {
+    border-collapse: collapse;
+    margin-bottom: 0.75em;
+  }
+
+  .markdown-preview th,
+  .markdown-preview td {
+    border: 1px solid var(--border);
+    padding: 0.4em 0.75em;
+  }
+
+  .markdown-preview hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1em 0;
+  }
 }
