@@ -15,6 +15,7 @@ import XmlCsvFormatter from "./pages/XmlCsvFormatter";
 import ColorTools from "./pages/ColorTools";
 import MarkdownPreviewer from "./pages/MarkdownPreviewer";
 import SqlFormatter from "./pages/SqlFormatter";
+import FakeDataGenerator from "./pages/FakeDataGenerator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -32,6 +33,7 @@ const BUILT_PATHS = [
   "/color",
   "/markdown",
   "/sql",
+  "/fake-data",
 ];
 
 export default function App() {
@@ -53,6 +55,7 @@ export default function App() {
           <Route path="/color" element={<ColorTools />} />
           <Route path="/markdown" element={<MarkdownPreviewer />} />
           <Route path="/sql" element={<SqlFormatter />} />
+          <Route path="/fake-data" element={<FakeDataGenerator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
