@@ -15,6 +15,7 @@ import {
   Sparkles,
   QrCode,
   CalendarClock,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -41,4 +42,5 @@ export const tools: ToolDef[] = [
   { path: "/fake-data", label: "Fake Data Generator", icon: Sparkles },
   { path: "/qr", label: "QR Code Generator", icon: QrCode },
   { path: "/cron", label: "Cron Explainer", icon: CalendarClock },
+  { path: "/cert", label: "X.509 Certificate Decoder", icon: ShieldCheck },
 ];
