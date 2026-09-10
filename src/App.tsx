@@ -5,10 +5,11 @@ import Home from "./pages/Home";
 import JsonFormatter from "./pages/JsonFormatter";
 import RegexTester from "./pages/RegexTester";
 import EncodeDecode from "./pages/EncodeDecode";
+import HashUuid from "./pages/HashUuid";
 import { tools } from "./tools";
 import "./App.css";
 
-const BUILT_PATHS = ["/json", "/regex", "/encode"];
+const BUILT_PATHS = ["/json", "/regex", "/encode", "/hash"];
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/json" element={<JsonFormatter />} />
           <Route path="/regex" element={<RegexTester />} />
           <Route path="/encode" element={<EncodeDecode />} />
+          <Route path="/hash" element={<HashUuid />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

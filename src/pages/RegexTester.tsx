@@ -228,7 +228,7 @@ export default function RegexTester() {
                 </span>
               ) : (
                 <span
-                  key={part.key}
+                  key={i}
                   className="text-transparent rounded-[2px]"
                   style={{ backgroundColor: "var(--regex-highlight)" }}
                 >
