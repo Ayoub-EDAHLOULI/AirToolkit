@@ -16,6 +16,7 @@ import ColorTools from "./pages/ColorTools";
 import MarkdownPreviewer from "./pages/MarkdownPreviewer";
 import SqlFormatter from "./pages/SqlFormatter";
 import FakeDataGenerator from "./pages/FakeDataGenerator";
+import QrCodeGenerator from "./pages/QrCodeGenerator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -34,6 +35,7 @@ const BUILT_PATHS = [
   "/markdown",
   "/sql",
   "/fake-data",
+  "/qr",
 ];
 
 export default function App() {
@@ -56,6 +58,7 @@ export default function App() {
           <Route path="/markdown" element={<MarkdownPreviewer />} />
           <Route path="/sql" element={<SqlFormatter />} />
           <Route path="/fake-data" element={<FakeDataGenerator />} />
+          <Route path="/qr" element={<QrCodeGenerator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
