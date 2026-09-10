@@ -13,6 +13,7 @@
     --danger: #d92d20;
     --border: #e2e5ea;
     --inputBg: #eef0f3;
+    --regex-highlight: rgba(29, 99, 237, 0.25);
     color-scheme: light;
   }
 
@@ -26,6 +27,7 @@
     --danger: #ff453a;
     --border: #38383a;
     --inputBg: #2c2c2e;
+    --regex-highlight: rgba(10, 132, 255, 0.35);
     color-scheme: dark;
   }
 

@@ -3,8 +3,11 @@ import SidebarLayout from "./layouts/SidebarLayout";
 import ComingSoon from "./components/ComingSoon";
 import Home from "./pages/Home";
 import JsonFormatter from "./pages/JsonFormatter";
+import RegexTester from "./pages/RegexTester";
 import { tools } from "./tools";
 import "./App.css";
+
+const BUILT_PATHS = ["/json", "/regex"];
 
 export default function App() {
   return (
@@ -13,8 +16,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/json" element={<JsonFormatter />} />
+          <Route path="/regex" element={<RegexTester />} />
           {tools
-            .filter((tool) => tool.path !== "/json")
+            .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
               <Route
                 key={tool.path}
