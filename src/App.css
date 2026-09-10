@@ -5,14 +5,14 @@
 @layer base {
   :root {
     /* LIGHT MODE COLORS */
-    --background: #f2f2f7;
+    --background: #f7f8fa;
     --card: #ffffff;
-    --text: #000000;
-    --subText: #8e8e93;
-    --primary: #007aff;
-    --danger: #ff3b30;
-    --border: #c6c6c8;
-    --inputBg: #e5e5ea;
+    --text: #17191c;
+    --subText: #6b7280;
+    --primary: #1d63ed;
+    --danger: #d92d20;
+    --border: #e2e5ea;
+    --inputBg: #eef0f3;
   }
 
   .dark {

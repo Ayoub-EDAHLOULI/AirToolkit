@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Wrench, Moon, Sun } from "lucide-react";
 import { tools } from "../tools";
 import { useTheme } from "../theme/useTheme";
@@ -13,12 +13,15 @@ export default function SidebarLayout({
   return (
     <div className="h-screen w-screen bg-background flex overflow-hidden">
       <aside className="w-60 bg-card border-r border-border flex flex-col shrink-0">
-        <div className="h-16 flex items-center px-5 border-b border-border shrink-0">
+        <Link
+          to="/"
+          className="h-16 flex items-center px-5 border-b border-border shrink-0 hover:bg-inputBg transition-colors"
+        >
           <Wrench className="text-primary w-6 h-6 mr-3" />
           <h1 className="text-lg font-bold text-text tracking-wide">
             AirToolkit
           </h1>
-        </div>
+        </Link>
 
         <nav className="flex-1 py-4 flex flex-col gap-1 px-3 overflow-y-auto custom-scrollbar">
           {tools.map((tool) => (
