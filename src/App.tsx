@@ -9,6 +9,7 @@ import HashUuid from "./pages/HashUuid";
 import JwtDecoder from "./pages/JwtDecoder";
 import DiffTool from "./pages/DiffTool";
 import TimestampConverter from "./pages/TimestampConverter";
+import CaseConverter from "./pages/CaseConverter";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -20,6 +21,7 @@ const BUILT_PATHS = [
   "/jwt",
   "/diff",
   "/timestamp",
+  "/case",
 ];
 
 export default function App() {
@@ -35,6 +37,7 @@ export default function App() {
           <Route path="/jwt" element={<JwtDecoder />} />
           <Route path="/diff" element={<DiffTool />} />
           <Route path="/timestamp" element={<TimestampConverter />} />
+          <Route path="/case" element={<CaseConverter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
