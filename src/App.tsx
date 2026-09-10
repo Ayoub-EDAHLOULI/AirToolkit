@@ -12,6 +12,7 @@ import TimestampConverter from "./pages/TimestampConverter";
 import CaseConverter from "./pages/CaseConverter";
 import NumberBaseConverter from "./pages/NumberBaseConverter";
 import XmlCsvFormatter from "./pages/XmlCsvFormatter";
+import ColorTools from "./pages/ColorTools";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -26,6 +27,7 @@ const BUILT_PATHS = [
   "/case",
   "/base",
   "/xml-csv",
+  "/color",
 ];
 
 export default function App() {
@@ -44,6 +46,7 @@ export default function App() {
           <Route path="/case" element={<CaseConverter />} />
           <Route path="/base" element={<NumberBaseConverter />} />
           <Route path="/xml-csv" element={<XmlCsvFormatter />} />
+          <Route path="/color" element={<ColorTools />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
