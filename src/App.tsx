@@ -10,6 +10,7 @@ import JwtDecoder from "./pages/JwtDecoder";
 import DiffTool from "./pages/DiffTool";
 import TimestampConverter from "./pages/TimestampConverter";
 import CaseConverter from "./pages/CaseConverter";
+import NumberBaseConverter from "./pages/NumberBaseConverter";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -22,6 +23,7 @@ const BUILT_PATHS = [
   "/diff",
   "/timestamp",
   "/case",
+  "/base",
 ];
 
 export default function App() {
@@ -38,6 +40,7 @@ export default function App() {
           <Route path="/diff" element={<DiffTool />} />
           <Route path="/timestamp" element={<TimestampConverter />} />
           <Route path="/case" element={<CaseConverter />} />
+          <Route path="/base" element={<NumberBaseConverter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
