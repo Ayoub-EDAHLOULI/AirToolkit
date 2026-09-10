@@ -39,17 +39,17 @@ It's also maintained as an open portfolio project.
 - [x] Case converter
 - [x] Number base converter
 
-### Phase 2 — planned, low complexity
+### Phase 2 — low complexity (done)
 
-- [ ] XML / CSV formatter — pretty-print/minify XML, validate well-formedness;
+- [x] XML / CSV formatter — pretty-print/minify XML, validate well-formedness;
       CSV → table view with delimiter/quote handling
-- [ ] Color Tools — HEX ↔ RGB ↔ HSL ↔ CMYK conversion with a visual picker
-- [ ] Markdown previewer — live-rendered markdown as you type
-- [ ] SQL formatter — beautify minified SQL into readable, indented output
-- [ ] Fake data generator — names, emails, UUIDs, addresses, lat/longs for
-      seeding test data
-- [ ] QR code generator — text/URL → QR image (reading/scanning is a
-      separate, later item — see Phase 3)
+- [x] Color Tools — HEX ↔ RGB ↔ HSL ↔ CMYK conversion with a visual picker
+- [x] Markdown previewer — live-rendered markdown as you type
+- [x] SQL formatter — beautify minified SQL into readable, indented output
+- [x] Fake data generator — names, emails, UUIDs, addresses, phone numbers,
+      and company names for seeding test data
+- [x] QR code generator — text/URL → QR image, with copy-as-data-URI and
+      save-to-PNG (reading/scanning is a separate, later item — see Phase 3)
 
 Base64 image ↔ data URI support will be added as a mode inside the existing
 Encode/Decode tool rather than a new sidebar entry.
@@ -63,8 +63,8 @@ Encode/Decode tool rather than a new sidebar entry.
 - [ ] Offline API request tester — see the note below; this is the one
       deliberate exception to AirToolkit's zero-network-calls posture
 - [ ] Favicon/image asset generator — one image in, a standard icon set out;
-      the first tool that writes files rather than just transforming text,
-      which will require expanding Tauri's filesystem allowlist
+      builds on the save-file capability (`tauri-plugin-dialog` +
+      `tauri-plugin-fs`) already added for the QR code generator
 - [ ] Color palette extractor — dominant colors from an uploaded image
 - [ ] QR code reader — decode an uploaded QR image back to text
 
