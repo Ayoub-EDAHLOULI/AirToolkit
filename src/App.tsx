@@ -8,10 +8,19 @@ import EncodeDecode from "./pages/EncodeDecode";
 import HashUuid from "./pages/HashUuid";
 import JwtDecoder from "./pages/JwtDecoder";
 import DiffTool from "./pages/DiffTool";
+import TimestampConverter from "./pages/TimestampConverter";
 import { tools } from "./tools";
 import "./App.css";
 
-const BUILT_PATHS = ["/json", "/regex", "/encode", "/hash", "/jwt", "/diff"];
+const BUILT_PATHS = [
+  "/json",
+  "/regex",
+  "/encode",
+  "/hash",
+  "/jwt",
+  "/diff",
+  "/timestamp",
+];
 
 export default function App() {
   return (
@@ -25,6 +34,7 @@ export default function App() {
           <Route path="/hash" element={<HashUuid />} />
           <Route path="/jwt" element={<JwtDecoder />} />
           <Route path="/diff" element={<DiffTool />} />
+          <Route path="/timestamp" element={<TimestampConverter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
