@@ -23,6 +23,7 @@ import FaviconGenerator from "./pages/FaviconGenerator";
 import PaletteExtractor from "./pages/PaletteExtractor";
 import QrCodeReader from "./pages/QrCodeReader";
 import ApiTester from "./pages/ApiTester";
+import UrlTool from "./pages/UrlTool";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -48,6 +49,7 @@ const BUILT_PATHS = [
   "/palette",
   "/qr-reader",
   "/api-tester",
+  "/url",
 ];
 
 export default function App() {
@@ -77,6 +79,7 @@ export default function App() {
           <Route path="/palette" element={<PaletteExtractor />} />
           <Route path="/qr-reader" element={<QrCodeReader />} />
           <Route path="/api-tester" element={<ApiTester />} />
+          <Route path="/url" element={<UrlTool />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
