@@ -17,6 +17,7 @@ import {
   CalendarClock,
   ShieldCheck,
   ImageIcon,
+  Pipette,
   type LucideIcon,
 } from "lucide-react";
 
@@ -45,4 +46,5 @@ export const tools: ToolDef[] = [
   { path: "/cron", label: "Cron Explainer", icon: CalendarClock },
   { path: "/cert", label: "X.509 Certificate Decoder", icon: ShieldCheck },
   { path: "/favicon", label: "Favicon Generator", icon: ImageIcon },
+  { path: "/palette", label: "Color Palette Extractor", icon: Pipette },
 ];

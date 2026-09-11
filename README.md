@@ -54,17 +54,18 @@ It's also maintained as an open portfolio project.
 Base64 image ↔ data URI support will be added as a mode inside the existing
 Encode/Decode tool rather than a new sidebar entry.
 
-### Phase 3 — planned, higher complexity or expanded capability surface
+### Phase 3 — higher complexity or expanded capability surface
 
-- [ ] Cron expression parser/explainer — human-readable explanation of a
-      cron string plus next N run times
-- [ ] X.509 certificate decoder — issuer/subject/validity/SANs/key algorithm
+- [x] Cron expression parser/explainer — human-readable explanation of a
+      cron string plus next 5 run times
+- [x] X.509 certificate decoder — issuer/subject/validity/SANs/key algorithm
       from a pasted PEM cert
+- [x] Favicon/image asset generator — one image in, PNGs at 8 standard sizes
+      out, plus a multi-resolution favicon.ico; the first tool to use the
+      folder-picker (`dialog:allow-open`) alongside the save-file capability
+      already added for the QR code generator
 - [ ] Offline API request tester — see the note below; this is the one
       deliberate exception to AirToolkit's zero-network-calls posture
-- [ ] Favicon/image asset generator — one image in, a standard icon set out;
-      builds on the save-file capability (`tauri-plugin-dialog` +
-      `tauri-plugin-fs`) already added for the QR code generator
 - [ ] Color palette extractor — dominant colors from an uploaded image
 - [ ] QR code reader — decode an uploaded QR image back to text
 

@@ -20,6 +20,7 @@ import QrCodeGenerator from "./pages/QrCodeGenerator";
 import CronExplainer from "./pages/CronExplainer";
 import CertDecoder from "./pages/CertDecoder";
 import FaviconGenerator from "./pages/FaviconGenerator";
+import PaletteExtractor from "./pages/PaletteExtractor";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -42,6 +43,7 @@ const BUILT_PATHS = [
   "/cron",
   "/cert",
   "/favicon",
+  "/palette",
 ];
 
 export default function App() {
@@ -68,6 +70,7 @@ export default function App() {
           <Route path="/cron" element={<CronExplainer />} />
           <Route path="/cert" element={<CertDecoder />} />
           <Route path="/favicon" element={<FaviconGenerator />} />
+          <Route path="/palette" element={<PaletteExtractor />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
