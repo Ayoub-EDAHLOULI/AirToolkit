@@ -64,10 +64,12 @@ Encode/Decode tool rather than a new sidebar entry.
       out, plus a multi-resolution favicon.ico; the first tool to use the
       folder-picker (`dialog:allow-open`) alongside the save-file capability
       already added for the QR code generator
+- [x] Color palette extractor — dominant colors from an uploaded image via
+      k-means clustering
+- [x] QR code reader — decode an uploaded QR image back to text, completing
+      the QR pair alongside the generator
 - [ ] Offline API request tester — see the note below; this is the one
       deliberate exception to AirToolkit's zero-network-calls posture
-- [ ] Color palette extractor — dominant colors from an uploaded image
-- [ ] QR code reader — decode an uploaded QR image back to text
 
 **A note on the API request tester:** AirToolkit's core promise is that the
 _app itself_ never makes a network call on its own — no telemetry, no

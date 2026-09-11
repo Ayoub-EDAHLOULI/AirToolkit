@@ -8,6 +8,10 @@
     "opener:default",
     "dialog:allow-save",
     "dialog:allow-open",
-    "fs:allow-write-file"
+    "fs:allow-write-file",
+    {
+      "identifier": "http:default",
+      "allow": [{ "url": "http://*:*" }, { "url": "https://*:*" }]
+    }
   ]
 }

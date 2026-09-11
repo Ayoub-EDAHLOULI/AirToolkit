@@ -19,6 +19,7 @@ import {
   ImageIcon,
   Pipette,
   ScanLine,
+  Globe,
   type LucideIcon,
 } from "lucide-react";
 
@@ -49,4 +50,5 @@ export const tools: ToolDef[] = [
   { path: "/favicon", label: "Favicon Generator", icon: ImageIcon },
   { path: "/palette", label: "Color Palette Extractor", icon: Pipette },
   { path: "/qr-reader", label: "QR Code Reader", icon: ScanLine },
+  { path: "/api-tester", label: "API Request Tester", icon: Globe },
 ];
