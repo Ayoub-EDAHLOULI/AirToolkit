@@ -68,7 +68,7 @@ Encode/Decode tool rather than a new sidebar entry.
       k-means clustering
 - [x] QR code reader — decode an uploaded QR image back to text, completing
       the QR pair alongside the generator
-- [ ] Offline API request tester — see the note below; this is the one
+- [x] Offline API request tester — see the note below; this is the one
       deliberate exception to AirToolkit's zero-network-calls posture
 
 **A note on the API request tester:** AirToolkit's core promise is that the
@@ -80,6 +80,30 @@ demand. It changes nothing about the app's own behavior — it still makes
 zero unsolicited calls — but it is the one tool whose job is to make a call
 _you_ tell it to make. This will be called out again in that tool's own UI
 when it ships.
+
+### Phase 4 — planned
+
+Additional utilities identified as generally useful for developers and IT
+work, beyond the original tool list:
+
+- [ ] URL parser/builder — break a URL into scheme/host/port/path/query/
+      fragment as editable fields, and rebuild it from edits
+- [ ] Subnet / CIDR calculator — network address, broadcast address, usable
+      host range, and host count from an IP + CIDR
+- [ ] Text utilities — line sort, deduplicate, whitespace/line-ending
+      normalization, character/word/line counts
+- [ ] Password / secret strength checker — entropy estimate, crack-time
+      estimate, and common-pattern detection (sequential, keyboard walk,
+      dictionary word)
+- [ ] Log parser / grep — filter multi-line log output by pattern, reusing
+      the Regex Tester's matching engine, with basic frequency stats
+- [ ] dotenv diff & validator — compare two `.env` files, flag missing/extra
+      keys and obviously-empty required values
+- [ ] JSON ↔ YAML / TOML converter — bidirectional, reusing the JSON
+      Formatter's parsing side
+- [ ] HTTP status code reference — searchable lookup with descriptions,
+      likely surfaced as a quick-reference panel inside the API Request
+      Tester rather than a separate sidebar entry
 
 ## Offline Verification
 
