@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   ImageIcon,
   Pipette,
+  ScanLine,
   type LucideIcon,
 } from "lucide-react";
 
@@ -47,4 +48,5 @@ export const tools: ToolDef[] = [
   { path: "/cert", label: "X.509 Certificate Decoder", icon: ShieldCheck },
   { path: "/favicon", label: "Favicon Generator", icon: ImageIcon },
   { path: "/palette", label: "Color Palette Extractor", icon: Pipette },
+  { path: "/qr-reader", label: "QR Code Reader", icon: ScanLine },
 ];
