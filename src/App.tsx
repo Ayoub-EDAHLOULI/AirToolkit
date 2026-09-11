@@ -19,6 +19,7 @@ import FakeDataGenerator from "./pages/FakeDataGenerator";
 import QrCodeGenerator from "./pages/QrCodeGenerator";
 import CronExplainer from "./pages/CronExplainer";
 import CertDecoder from "./pages/CertDecoder";
+import FaviconGenerator from "./pages/FaviconGenerator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -40,6 +41,7 @@ const BUILT_PATHS = [
   "/qr",
   "/cron",
   "/cert",
+  "/favicon",
 ];
 
 export default function App() {
@@ -65,6 +67,7 @@ export default function App() {
           <Route path="/qr" element={<QrCodeGenerator />} />
           <Route path="/cron" element={<CronExplainer />} />
           <Route path="/cert" element={<CertDecoder />} />
+          <Route path="/favicon" element={<FaviconGenerator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

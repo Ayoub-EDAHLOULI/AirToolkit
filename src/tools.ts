@@ -16,6 +16,7 @@ import {
   QrCode,
   CalendarClock,
   ShieldCheck,
+  ImageIcon,
   type LucideIcon,
 } from "lucide-react";
 
@@ -43,4 +44,5 @@ export const tools: ToolDef[] = [
   { path: "/qr", label: "QR Code Generator", icon: QrCode },
   { path: "/cron", label: "Cron Explainer", icon: CalendarClock },
   { path: "/cert", label: "X.509 Certificate Decoder", icon: ShieldCheck },
+  { path: "/favicon", label: "Favicon Generator", icon: ImageIcon },
 ];
