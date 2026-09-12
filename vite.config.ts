@@ -8,6 +8,14 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(() => ({
   plugins: [react()],
 
+  // Some dependencies (e.g. @iarna/toml) assume a Node.js `global` object
+  // at module scope, which doesn't exist in the browser/WebView. This is
+  // the standard Vite fix: alias it to globalThis, which is available in
+  // both environments.
+  define: {
+    global: "globalThis",
+  },
+
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
   // 1. prevent Vite from obscuring rust errors

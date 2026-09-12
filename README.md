@@ -81,26 +81,23 @@ zero unsolicited calls — but it is the one tool whose job is to make a call
 _you_ tell it to make. This will be called out again in that tool's own UI
 when it ships.
 
-### Phase 4 — planned
+### Phase 4 — additional developer/IT utilities
 
-Additional utilities identified as generally useful for developers and IT
-work, beyond the original tool list:
-
-- [ ] URL parser/builder — break a URL into scheme/host/port/path/query/
+- [x] URL parser/builder — break a URL into scheme/host/port/path/query/
       fragment as editable fields, and rebuild it from edits
-- [ ] Subnet / CIDR calculator — network address, broadcast address, usable
+- [x] Subnet / CIDR calculator — network address, broadcast address, usable
       host range, and host count from an IP + CIDR
-- [ ] Text utilities — line sort, deduplicate, whitespace/line-ending
+- [x] Text utilities — line sort, deduplicate, whitespace/line-ending
       normalization, character/word/line counts
-- [ ] Password / secret strength checker — entropy estimate, crack-time
-      estimate, and common-pattern detection (sequential, keyboard walk,
-      dictionary word)
-- [ ] Log parser / grep — filter multi-line log output by pattern, reusing
-      the Regex Tester's matching engine, with basic frequency stats
-- [ ] dotenv diff & validator — compare two `.env` files, flag missing/extra
-      keys and obviously-empty required values
-- [ ] JSON ↔ YAML / TOML converter — bidirectional, reusing the JSON
-      Formatter's parsing side
+- [x] Password / secret strength checker — entropy estimate, crack-time
+      estimate, common-pattern detection (sequential, keyboard walk,
+      dictionary word), and a strong-password generator
+- [x] Log parser / grep — filter multi-line log output by pattern, with
+      case-insensitive/invert-match options and a most-repeated-lines panel
+- [x] dotenv diff & validator — compare two `.env` files, flag missing/extra
+      keys, differing values, empty values, and duplicate keys
+- [x] JSON ↔ YAML / TOML converter — bidirectional, using js-yaml and
+      @iarna/toml
 - [ ] HTTP status code reference — searchable lookup with descriptions,
       likely surfaced as a quick-reference panel inside the API Request
       Tester rather than a separate sidebar entry

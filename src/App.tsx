@@ -29,6 +29,7 @@ import TextUtilities from "./pages/TextUtilities";
 import PasswordChecker from "./pages/PasswordChecker";
 import LogParser from "./pages/LogParser";
 import DotenvDiff from "./pages/DotenvDiff";
+import DataFormatConverter from "./pages/DataFormatConverter";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -60,6 +61,7 @@ const BUILT_PATHS = [
   "/password",
   "/log-parser",
   "/dotenv-diff",
+  "/json-yaml",
 ];
 
 export default function App() {
@@ -95,6 +97,7 @@ export default function App() {
           <Route path="/password" element={<PasswordChecker />} />
           <Route path="/log-parser" element={<LogParser />} />
           <Route path="/dotenv-diff" element={<DotenvDiff />} />
+          <Route path="/json-yaml" element={<DataFormatConverter />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
