@@ -170,4 +170,13 @@
     border-top: 1px solid var(--border);
     margin: 1em 0;
   }
+
+  /* Suppress Chromium/Edge's built-in password reveal-eye and clear-X
+     buttons on <input type="password">, since we render our own toggle. */
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear,
+  input::-webkit-credentials-auto-fill-button,
+  input[type="password"]::-webkit-textfield-decoration-container {
+    display: none !important;
+  }
 }

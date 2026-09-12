@@ -26,6 +26,7 @@ import ApiTester from "./pages/ApiTester";
 import UrlTool from "./pages/UrlTool";
 import CidrCalculator from "./pages/CidrCalculator";
 import TextUtilities from "./pages/TextUtilities";
+import PasswordChecker from "./pages/PasswordChecker";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -54,6 +55,7 @@ const BUILT_PATHS = [
   "/url",
   "/cidr",
   "/text",
+  "/password",
 ];
 
 export default function App() {
@@ -86,6 +88,7 @@ export default function App() {
           <Route path="/url" element={<UrlTool />} />
           <Route path="/cidr" element={<CidrCalculator />} />
           <Route path="/text" element={<TextUtilities />} />
+          <Route path="/password" element={<PasswordChecker />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
