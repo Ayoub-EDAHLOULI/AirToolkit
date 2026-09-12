@@ -1,6 +1,16 @@
 import { useMemo, useState } from "react";
-import { Send, Plus, Trash2, Copy, Check, Globe } from "lucide-react";
+import {
+  Send,
+  Plus,
+  Trash2,
+  Copy,
+  Check,
+  Globe,
+  ListTree,
+  X,
+} from "lucide-react";
 import { fetch } from "@tauri-apps/plugin-http";
+import { HTTP_STATUS_CODES } from "../lib/httpStatusCodes";
 
 const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"] as const;
 type Method = (typeof METHODS)[number];
@@ -42,6 +52,19 @@ export default function ApiTester() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showStatusCodes, setShowStatusCodes] = useState(false);
+  const [statusQuery, setStatusQuery] = useState("");
+
+  const filteredStatusCodes = useMemo(() => {
+    const q = statusQuery.trim().toLowerCase();
+    if (!q) return HTTP_STATUS_CODES;
+    return HTTP_STATUS_CODES.filter(
+      (s) =>
+        String(s.code).includes(q) ||
+        s.label.toLowerCase().includes(q) ||
+        s.description.toLowerCase().includes(q),
+    );
+  }, [statusQuery]);
 
   const hasBody = method === "POST" || method === "PUT" || method === "PATCH";
 
@@ -120,9 +143,22 @@ export default function ApiTester() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border shrink-0">
-        <Globe className="text-primary" size={20} />
-        <h2 className="font-semibold text-text">API Request Tester</h2>
+      <div className="flex items-center justify-between px-6 h-16 border-b border-border shrink-0">
+        <div className="flex items-center gap-2">
+          <Globe className="text-primary" size={20} />
+          <h2 className="font-semibold text-text">API Request Tester</h2>
+        </div>
+        <button
+          onClick={() => setShowStatusCodes((s) => !s)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium border border-border transition-colors ${
+            showStatusCodes
+              ? "bg-primary text-white border-primary"
+              : "text-subText hover:bg-inputBg"
+          }`}
+        >
+          <ListTree size={14} />
+          Status Codes
+        </button>
       </div>
 
       <div className="px-6 py-3 border-b border-border shrink-0">
@@ -278,6 +314,51 @@ export default function ApiTester() {
             )}
           </div>
         </div>
+
+        {showStatusCodes && (
+          <div className="w-80 flex flex-col overflow-hidden border-l border-border shrink-0 bg-card">
+            <div className="flex items-center justify-between px-4 py-2 text-xs font-medium text-subText border-b border-border shrink-0">
+              <span>HTTP Status Codes</span>
+              <button
+                onClick={() => setShowStatusCodes(false)}
+                className="text-subText hover:text-text transition-colors"
+              >
+                <X size={14} />
+              </button>
+            </div>
+            <div className="p-3 border-b border-border shrink-0">
+              <input
+                value={statusQuery}
+                onChange={(e) => setStatusQuery(e.target.value)}
+                placeholder="Search code, name, or description..."
+                spellCheck={false}
+                className="w-full rounded-lg border border-border bg-inputBg px-3 py-1.5 text-sm text-text outline-none placeholder:text-subText"
+              />
+            </div>
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-3 flex flex-col gap-1">
+              {filteredStatusCodes.length === 0 ? (
+                <p className="text-sm text-subText px-2">No matches.</p>
+              ) : (
+                filteredStatusCodes.map((s) => (
+                  <div
+                    key={s.code}
+                    className="rounded-lg px-2 py-1.5 hover:bg-inputBg"
+                  >
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-mono text-sm font-semibold text-primary">
+                        {s.code}
+                      </span>
+                      <span className="text-sm font-medium text-text">
+                        {s.label}
+                      </span>
+                    </div>
+                    <p className="text-xs text-subText">{s.description}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -98,9 +98,11 @@ when it ships.
       keys, differing values, empty values, and duplicate keys
 - [x] JSON ↔ YAML / TOML converter — bidirectional, using js-yaml and
       @iarna/toml
-- [ ] HTTP status code reference — searchable lookup with descriptions,
-      likely surfaced as a quick-reference panel inside the API Request
-      Tester rather than a separate sidebar entry
+- [x] HTTP status code reference — searchable lookup with descriptions,
+      surfaced as a toggleable panel inside the API Request Tester rather
+      than a separate sidebar entry
+
+All planned tools are now shipped.
 
 ## Offline Verification
 
