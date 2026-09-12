@@ -28,6 +28,7 @@ import CidrCalculator from "./pages/CidrCalculator";
 import TextUtilities from "./pages/TextUtilities";
 import PasswordChecker from "./pages/PasswordChecker";
 import LogParser from "./pages/LogParser";
+import DotenvDiff from "./pages/DotenvDiff";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -58,6 +59,7 @@ const BUILT_PATHS = [
   "/text",
   "/password",
   "/log-parser",
+  "/dotenv-diff",
 ];
 
 export default function App() {
@@ -92,6 +94,7 @@ export default function App() {
           <Route path="/text" element={<TextUtilities />} />
           <Route path="/password" element={<PasswordChecker />} />
           <Route path="/log-parser" element={<LogParser />} />
+          <Route path="/dotenv-diff" element={<DotenvDiff />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
