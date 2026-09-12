@@ -24,6 +24,7 @@ import PaletteExtractor from "./pages/PaletteExtractor";
 import QrCodeReader from "./pages/QrCodeReader";
 import ApiTester from "./pages/ApiTester";
 import UrlTool from "./pages/UrlTool";
+import CidrCalculator from "./pages/CidrCalculator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -50,6 +51,7 @@ const BUILT_PATHS = [
   "/qr-reader",
   "/api-tester",
   "/url",
+  "/cidr",
 ];
 
 export default function App() {
@@ -80,6 +82,7 @@ export default function App() {
           <Route path="/qr-reader" element={<QrCodeReader />} />
           <Route path="/api-tester" element={<ApiTester />} />
           <Route path="/url" element={<UrlTool />} />
+          <Route path="/cidr" element={<CidrCalculator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
