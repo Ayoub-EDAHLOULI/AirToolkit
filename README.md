@@ -102,7 +102,31 @@ when it ships.
       surfaced as a toggleable panel inside the API Request Tester rather
       than a separate sidebar entry
 
-All planned tools are now shipped.
+### Phase 5 — planned
+
+More utilities identified as filling real gaps the first 32 tools didn't
+cover:
+
+- [ ] String escape/unescape helper — JSON string escaping, shell quoting,
+      SQL string literals, and regex special characters in one tool
+- [ ] JSON structural diff — compares two JSON documents by key/value
+      rather than by line, avoiding false differences from re-ordering or
+      formatting that the line-based Diff Tool would show
+- [ ] Network port reference — searchable lookup of common ports (443,
+      3306, 6379, etc.) and what typically runs on them, same shape as the
+      HTTP status code reference
+- [ ] cURL ↔ request builder — parse a cURL command into method/URL/
+      headers/body, or generate a cURL command from a request; ties into
+      the existing API Request Tester
+- [ ] JSON Schema validator — validate a JSON document against a JSON
+      Schema (needs the `ajv` library)
+- [ ] Certificate / CSR generator — generate a self-signed certificate or
+      CSR locally, extending `@peculiar/x509` (already a dependency of the
+      X.509 Certificate Decoder, and already proven capable of generation
+      during that tool's own test verification)
+- [ ] Hex/binary file inspector — drop a small file, see its hex dump and
+      detected magic bytes/file type; the first byte-level (rather than
+      text-level) tool in the app
 
 ## Offline Verification
 

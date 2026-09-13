@@ -30,6 +30,7 @@ import PasswordChecker from "./pages/PasswordChecker";
 import LogParser from "./pages/LogParser";
 import DotenvDiff from "./pages/DotenvDiff";
 import DataFormatConverter from "./pages/DataFormatConverter";
+import StringEscape from "./pages/StringEscape";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -62,6 +63,7 @@ const BUILT_PATHS = [
   "/log-parser",
   "/dotenv-diff",
   "/json-yaml",
+  "/escape",
 ];
 
 export default function App() {
@@ -98,6 +100,7 @@ export default function App() {
           <Route path="/log-parser" element={<LogParser />} />
           <Route path="/dotenv-diff" element={<DotenvDiff />} />
           <Route path="/json-yaml" element={<DataFormatConverter />} />
+          <Route path="/escape" element={<StringEscape />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

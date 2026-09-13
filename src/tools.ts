@@ -27,6 +27,13 @@ import {
   Terminal,
   FileDiff,
   FileJson2,
+  SquareCode,
+  GitCompareArrows,
+  Router,
+  SquareTerminal,
+  FileCheck2,
+  ShieldPlus,
+  FileDigit,
   type LucideIcon,
 } from "lucide-react";
 
@@ -85,4 +92,13 @@ export const tools: ToolDef[] = [
   { path: "/color", label: "Color Tools", icon: Palette, category: "Converters & Media" },
   { path: "/palette", label: "Color Palette Extractor", icon: Pipette, category: "Converters & Media" },
   { path: "/qr-reader", label: "QR Code Reader", icon: ScanLine, category: "Converters & Media" },
+
+  // Phase 5 additions
+  { path: "/escape", label: "String Escape / Unescape", icon: SquareCode, category: "Formatters & Text" },
+  { path: "/json-diff", label: "JSON Diff", icon: GitCompareArrows, category: "Formatters & Text" },
+  { path: "/ports", label: "Network Port Reference", icon: Router, category: "Network & Config" },
+  { path: "/curl", label: "cURL ↔ Request Builder", icon: SquareTerminal, category: "Network & Config" },
+  { path: "/json-schema", label: "JSON Schema Validator", icon: FileCheck2, category: "Formatters & Text" },
+  { path: "/csr", label: "Certificate / CSR Generator", icon: ShieldPlus, category: "Security" },
+  { path: "/hex-inspector", label: "Hex / Binary File Inspector", icon: FileDigit, category: "Converters & Media" },
 ];
