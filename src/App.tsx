@@ -33,6 +33,7 @@ import DataFormatConverter from "./pages/DataFormatConverter";
 import StringEscape from "./pages/StringEscape";
 import JsonDiff from "./pages/JsonDiff";
 import NetworkPorts from "./pages/NetworkPorts";
+import CurlBuilder from "./pages/CurlBuilder";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -68,6 +69,7 @@ const BUILT_PATHS = [
   "/escape",
   "/json-diff",
   "/ports",
+  "/curl",
 ];
 
 export default function App() {
@@ -107,6 +109,7 @@ export default function App() {
           <Route path="/escape" element={<StringEscape />} />
           <Route path="/json-diff" element={<JsonDiff />} />
           <Route path="/ports" element={<NetworkPorts />} />
+          <Route path="/curl" element={<CurlBuilder />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
