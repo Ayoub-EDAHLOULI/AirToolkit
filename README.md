@@ -119,15 +119,15 @@ cover:
       multi-line browser devtools output) into method/URL/headers/body, or
       generate a cURL command from a request; a standalone tool, not
       integrated into the API Request Tester
-- [ ] JSON Schema validator — validate a JSON document against a JSON
-      Schema (needs the `ajv` library)
-- [ ] Certificate / CSR generator — generate a self-signed certificate or
+- [x] JSON Schema validator — validate a JSON document against a JSON
+      Schema, using the `ajv` library
+- [x] Certificate / CSR generator — generate a self-signed certificate or
       CSR locally, extending `@peculiar/x509` (already a dependency of the
-      X.509 Certificate Decoder, and already proven capable of generation
-      during that tool's own test verification)
-- [ ] Hex/binary file inspector — drop a small file, see its hex dump and
-      detected magic bytes/file type; the first byte-level (rather than
-      text-level) tool in the app
+      X.509 Certificate Decoder); RSA 2048/4096 or ECDSA P-256, with the
+      private key generated locally and never leaving the device
+- [x] Hex/binary file inspector — open a file via the native file dialog,
+      see its hex dump and detected magic bytes/file type; the first
+      byte-level (rather than text-level) tool in the app
 
 ## Offline Verification
 
