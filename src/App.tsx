@@ -37,6 +37,9 @@ import CurlBuilder from "./pages/CurlBuilder";
 import JsonSchemaValidator from "./pages/JsonSchemaValidator";
 import CertGenerator from "./pages/CertGenerator";
 import HexInspector from "./pages/HexInspector";
+import Base64FileEncoder from "./pages/Base64FileEncoder";
+import SystemInfo from "./pages/SystemInfo";
+import Scratchpad from "./pages/Scratchpad";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -76,6 +79,9 @@ const BUILT_PATHS = [
   "/json-schema",
   "/csr",
   "/hex-inspector",
+  "/base64-file",
+  "/system-info",
+  "/scratchpad",
 ];
 
 export default function App() {
@@ -119,6 +125,9 @@ export default function App() {
           <Route path="/json-schema" element={<JsonSchemaValidator />} />
           <Route path="/csr" element={<CertGenerator />} />
           <Route path="/hex-inspector" element={<HexInspector />} />
+          <Route path="/base64-file" element={<Base64FileEncoder />} />
+          <Route path="/system-info" element={<SystemInfo />} />
+          <Route path="/scratchpad" element={<Scratchpad />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

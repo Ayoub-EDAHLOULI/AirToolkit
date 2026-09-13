@@ -10,6 +10,7 @@
     "dialog:allow-open",
     "fs:allow-write-file",
     "fs:allow-read-file",
+    "os:default",
     {
       "identifier": "http:default",
       "allow": [{ "url": "http://*:*" }, { "url": "https://*:*" }]

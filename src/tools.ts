@@ -34,6 +34,9 @@ import {
   FileCheck2,
   ShieldPlus,
   FileDigit,
+  FileArchive,
+  MonitorCog,
+  NotebookPen,
   type LucideIcon,
 } from "lucide-react";
 
@@ -101,4 +104,9 @@ export const tools: ToolDef[] = [
   { path: "/json-schema", label: "JSON Schema Validator", icon: FileCheck2, category: "Formatters & Text" },
   { path: "/csr", label: "Certificate / CSR Generator", icon: ShieldPlus, category: "Security" },
   { path: "/hex-inspector", label: "Hex / Binary File Inspector", icon: FileDigit, category: "Converters & Media" },
+
+  // Phase 6 additions
+  { path: "/base64-file", label: "Base64 File Encoder", icon: FileArchive, category: "Converters & Media" },
+  { path: "/system-info", label: "System Info", icon: MonitorCog, category: "Network & Config" },
+  { path: "/scratchpad", label: "Scratchpad", icon: NotebookPen, category: "Formatters & Text" },
 ];

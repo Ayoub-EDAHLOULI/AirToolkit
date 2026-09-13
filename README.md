@@ -129,6 +129,21 @@ cover:
       see its hex dump and detected magic bytes/file type; the first
       byte-level (rather than text-level) tool in the app
 
+### Phase 6 — final polish round
+
+- [x] Regex cheat sheet — folded into the existing Regex Tester as a
+      toggleable side panel rather than a new sidebar entry (built back in
+      Phase 1, not a new tool)
+- [x] Base64 file encoder — open any file via the native dialog and get its
+      base64 (or data URI) encoding, or paste base64 back and save it to a
+      file; complements the existing text-only Encode/Decode tool
+- [x] System info panel — platform, OS version, architecture, locale,
+      hostname, screen/viewport size, and CPU core count, read locally via
+      `tauri-plugin-os`; useful for quick IT triage on a locked-down machine
+- [x] Scratchpad — a simple local multi-note notepad for jotting things down
+      mid-task, persisted via `localStorage` (per-machine only, never
+      synced or exported automatically)
+
 ## Offline Verification
 
 **TODO:** Each release should be verified with OS-level network blocking
