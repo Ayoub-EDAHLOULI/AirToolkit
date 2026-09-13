@@ -31,6 +31,7 @@ import LogParser from "./pages/LogParser";
 import DotenvDiff from "./pages/DotenvDiff";
 import DataFormatConverter from "./pages/DataFormatConverter";
 import StringEscape from "./pages/StringEscape";
+import JsonDiff from "./pages/JsonDiff";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -64,6 +65,7 @@ const BUILT_PATHS = [
   "/dotenv-diff",
   "/json-yaml",
   "/escape",
+  "/json-diff",
 ];
 
 export default function App() {
@@ -101,6 +103,7 @@ export default function App() {
           <Route path="/dotenv-diff" element={<DotenvDiff />} />
           <Route path="/json-yaml" element={<DataFormatConverter />} />
           <Route path="/escape" element={<StringEscape />} />
+          <Route path="/json-diff" element={<JsonDiff />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
