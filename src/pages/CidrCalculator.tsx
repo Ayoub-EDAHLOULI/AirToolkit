@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Network, Copy, Check } from "lucide-react";
+import { Network, Copy, Check, X } from "lucide-react";
 import { calculateCidr } from "../lib/cidr";
 
 function ResultRow({ label, value }: { label: string; value: string }) {
@@ -53,13 +53,24 @@ export default function CidrCalculator() {
             <label className="text-xs font-medium text-subText">
               IP Address / CIDR Prefix
             </label>
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="192.168.1.100/24"
-              spellCheck={false}
-              className="w-full rounded-lg border border-border bg-card px-3 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
-            />
+            <div className="relative">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="192.168.1.100/24"
+                spellCheck={false}
+                className="w-full rounded-lg border border-border bg-card px-3 pr-9 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
+              />
+              {input && (
+                <button
+                  onClick={() => setInput("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+                  title="Clear"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
           </div>
 
           {showError && (

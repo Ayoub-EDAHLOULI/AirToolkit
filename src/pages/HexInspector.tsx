@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { FileDigit, FolderOpen } from "lucide-react";
+import { FileDigit, FolderOpen, Trash2 } from "lucide-react";
 import { open } from "@tauri-apps/plugin-dialog";
 import { readFile } from "@tauri-apps/plugin-fs";
 import { detectFileType, isLikelyText } from "../lib/fileSignatures";
@@ -87,14 +87,30 @@ export default function HexInspector() {
             Hex / Binary File Inspector
           </h2>
         </div>
-        <button
-          onClick={handleOpen}
-          disabled={loading}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary text-white hover:opacity-90 transition-opacity disabled:opacity-40"
-        >
-          <FolderOpen size={14} />
-          {loading ? "Reading..." : "Open File"}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleOpen}
+            disabled={loading}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary text-white hover:opacity-90 transition-opacity disabled:opacity-40"
+          >
+            <FolderOpen size={14} />
+            {loading ? "Reading..." : "Open File"}
+          </button>
+          {bytes && (
+            <button
+              onClick={() => {
+                setBytes(null);
+                setFileName("");
+                setFileSize(0);
+                setError(null);
+              }}
+              className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+              title="Clear"
+            >
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>
       </div>
 
       {error && (

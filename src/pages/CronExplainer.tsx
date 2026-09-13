@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { CalendarClock } from "lucide-react";
+import { CalendarClock, X } from "lucide-react";
 import cronstrue from "cronstrue";
 import { CronExpressionParser } from "cron-parser";
 
@@ -63,13 +63,24 @@ export default function CronExplainer() {
             <label className="text-xs font-medium text-subText">
               Cron Expression
             </label>
-            <input
-              value={expression}
-              onChange={(e) => setExpression(e.target.value)}
-              placeholder="e.g. */15 9-17 * * 1-5"
-              spellCheck={false}
-              className="w-full rounded-lg border border-border bg-card px-3 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
-            />
+            <div className="relative">
+              <input
+                value={expression}
+                onChange={(e) => setExpression(e.target.value)}
+                placeholder="e.g. */15 9-17 * * 1-5"
+                spellCheck={false}
+                className="w-full rounded-lg border border-border bg-card px-3 pr-9 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
+              />
+              {expression && (
+                <button
+                  onClick={() => setExpression("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+                  title="Clear"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">

@@ -327,13 +327,23 @@ export default function ApiTester() {
               </button>
             </div>
             <div className="p-3 border-b border-border shrink-0">
-              <input
-                value={statusQuery}
-                onChange={(e) => setStatusQuery(e.target.value)}
-                placeholder="Search code, name, or description..."
-                spellCheck={false}
-                className="w-full rounded-lg border border-border bg-inputBg px-3 py-1.5 text-sm text-text outline-none placeholder:text-subText"
-              />
+              <div className="relative">
+                <input
+                  value={statusQuery}
+                  onChange={(e) => setStatusQuery(e.target.value)}
+                  placeholder="Search code, name, or description..."
+                  spellCheck={false}
+                  className="w-full rounded-lg border border-border bg-inputBg px-3 pr-8 py-1.5 text-sm text-text outline-none placeholder:text-subText"
+                />
+                {statusQuery && (
+                  <button
+                    onClick={() => setStatusQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+              </div>
             </div>
             <div className="flex-1 overflow-y-auto custom-scrollbar p-3 flex flex-col gap-1">
               {filteredStatusCodes.length === 0 ? (

@@ -1,5 +1,12 @@
 import { useMemo, useState } from "react";
-import { LockKeyhole, Eye, EyeOff, AlertTriangle, Wand2 } from "lucide-react";
+import {
+  LockKeyhole,
+  Eye,
+  EyeOff,
+  AlertTriangle,
+  Wand2,
+  X,
+} from "lucide-react";
 import {
   analyzePassword,
   generateStrongPassword,
@@ -51,14 +58,25 @@ export default function PasswordChecker() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Type a password to analyze..."
                 spellCheck={false}
-                className="w-full rounded-lg border border-border bg-card pl-3 pr-10 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
+                className="w-full rounded-lg border border-border bg-card pl-3 pr-16 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
               />
-              <button
-                onClick={() => setVisible((v) => !v)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
-              >
-                {visible ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                {password && (
+                  <button
+                    onClick={() => setPassword("")}
+                    className="text-subText hover:text-text transition-colors"
+                    title="Clear"
+                  >
+                    <X size={16} />
+                  </button>
+                )}
+                <button
+                  onClick={() => setVisible((v) => !v)}
+                  className="text-subText hover:text-text transition-colors"
+                >
+                  {visible ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
             </div>
             <p className="text-xs text-subText">
               This runs entirely on your device — nothing is sent anywhere.

@@ -1,5 +1,11 @@
 import { useRef, useState } from "react";
-import { Palette as PaletteIcon, Upload, Copy, Check } from "lucide-react";
+import {
+  Palette as PaletteIcon,
+  Upload,
+  Copy,
+  Check,
+  Trash2,
+} from "lucide-react";
 import { extractDominantColors } from "../lib/colorQuantize";
 
 interface Swatch {
@@ -81,9 +87,25 @@ export default function PaletteExtractor() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border shrink-0">
-        <PaletteIcon className="text-primary" size={20} />
-        <h2 className="font-semibold text-text">Color Palette Extractor</h2>
+      <div className="flex items-center justify-between px-6 h-16 border-b border-border shrink-0">
+        <div className="flex items-center gap-2">
+          <PaletteIcon className="text-primary" size={20} />
+          <h2 className="font-semibold text-text">Color Palette Extractor</h2>
+        </div>
+        {(imageUrl || fileName) && (
+          <button
+            onClick={() => {
+              setImageUrl(null);
+              setSwatches([]);
+              setFileName("");
+              if (fileInputRef.current) fileInputRef.current.value = "";
+            }}
+            className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+            title="Clear"
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar p-6">

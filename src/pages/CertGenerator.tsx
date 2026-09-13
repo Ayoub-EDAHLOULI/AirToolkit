@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShieldPlus, Copy, Check, RefreshCw } from "lucide-react";
+import { ShieldPlus, Copy, Check, RefreshCw, Trash2 } from "lucide-react";
 import {
   generateSelfSignedCert,
   generateCsr,
@@ -156,6 +156,35 @@ export default function CertGenerator() {
             CSR
           </button>
         </div>
+
+        {(subject.commonName ||
+          subject.organization ||
+          subject.organizationalUnit ||
+          subject.country ||
+          subject.state ||
+          subject.locality ||
+          sansInput ||
+          result) && (
+          <button
+            onClick={() => {
+              setSubject({
+                commonName: "",
+                organization: "",
+                organizationalUnit: "",
+                country: "",
+                state: "",
+                locality: "",
+              });
+              setSansInput("");
+              setResult(null);
+              setError(null);
+            }}
+            className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+            title="Clear"
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
       </div>
 
       <div className="flex flex-1 overflow-hidden">

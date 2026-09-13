@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Router, Search } from "lucide-react";
+import { Router, Search, X } from "lucide-react";
 import { NETWORK_PORTS } from "../lib/networkPorts";
 
 export default function NetworkPorts() {
@@ -35,8 +35,16 @@ export default function NetworkPorts() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search port, service, or description..."
             spellCheck={false}
-            className="w-full rounded-lg border border-border bg-card pl-8 pr-3 py-2 text-sm text-text outline-none placeholder:text-subText"
+            className="w-full rounded-lg border border-border bg-card pl-8 pr-8 py-2 text-sm text-text outline-none placeholder:text-subText"
           />
+          {query && (
+            <button
+              onClick={() => setQuery("")}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+            >
+              <X size={14} />
+            </button>
+          )}
         </div>
       </div>
 

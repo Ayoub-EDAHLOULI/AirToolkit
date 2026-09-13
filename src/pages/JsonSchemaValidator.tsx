@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { FileCheck2, CheckCircle2, XCircle } from "lucide-react";
+import { FileCheck2, CheckCircle2, XCircle, Trash2 } from "lucide-react";
 import { validateAgainstSchema } from "../lib/jsonSchemaValidate";
 
 export default function JsonSchemaValidator() {
@@ -13,9 +13,23 @@ export default function JsonSchemaValidator() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border shrink-0">
-        <FileCheck2 className="text-primary" size={20} />
-        <h2 className="font-semibold text-text">JSON Schema Validator</h2>
+      <div className="flex items-center justify-between px-6 h-16 border-b border-border shrink-0">
+        <div className="flex items-center gap-2">
+          <FileCheck2 className="text-primary" size={20} />
+          <h2 className="font-semibold text-text">JSON Schema Validator</h2>
+        </div>
+        {(schemaText || dataText) && (
+          <button
+            onClick={() => {
+              setSchemaText("");
+              setDataText("");
+            }}
+            className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+            title="Clear"
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
       </div>
 
       <div className="flex flex-1 overflow-hidden">

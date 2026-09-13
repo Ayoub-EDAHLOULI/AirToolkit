@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Clock, Copy, Check } from "lucide-react";
+import { Clock, Copy, Check, X } from "lucide-react";
 
 type Unit = "seconds" | "milliseconds";
 
@@ -90,15 +90,26 @@ function UnixToDate() {
       </div>
 
       <div className="p-4 flex flex-col gap-3">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={
-            unit === "seconds" ? "e.g. 1516239022" : "e.g. 1516239022000"
-          }
-          spellCheck={false}
-          className="w-full rounded-lg border border-border bg-card px-3 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
-        />
+        <div className="relative">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={
+              unit === "seconds" ? "e.g. 1516239022" : "e.g. 1516239022000"
+            }
+            spellCheck={false}
+            className="w-full rounded-lg border border-border bg-card px-3 pr-9 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
+          />
+          {input && (
+            <button
+              onClick={() => setInput("")}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+              title="Clear"
+            >
+              <X size={14} />
+            </button>
+          )}
+        </div>
 
         {input.trim() && !date ? (
           <p className="text-sm text-danger">Not a valid timestamp.</p>
@@ -132,13 +143,24 @@ function DateToUnix() {
       </div>
 
       <div className="p-4 flex flex-col gap-3">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="e.g. 2024-01-17T10:30:00Z or Jan 17 2024"
-          spellCheck={false}
-          className="w-full rounded-lg border border-border bg-card px-3 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
-        />
+        <div className="relative">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="e.g. 2024-01-17T10:30:00Z or Jan 17 2024"
+            spellCheck={false}
+            className="w-full rounded-lg border border-border bg-card px-3 pr-9 py-2 font-mono text-sm text-text outline-none placeholder:text-subText"
+          />
+          {input && (
+            <button
+              onClick={() => setInput("")}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-subText hover:text-text transition-colors"
+              title="Clear"
+            >
+              <X size={14} />
+            </button>
+          )}
+        </div>
 
         {input.trim() && !date ? (
           <p className="text-sm text-danger">

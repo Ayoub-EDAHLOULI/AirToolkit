@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Trash2 } from "lucide-react";
 import {
   X509Certificate,
   SubjectAlternativeNameExtension,
@@ -131,9 +131,20 @@ export default function CertDecoder() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border shrink-0">
-        <ShieldCheck className="text-primary" size={20} />
-        <h2 className="font-semibold text-text">X.509 Certificate Decoder</h2>
+      <div className="flex items-center justify-between px-6 h-16 border-b border-border shrink-0">
+        <div className="flex items-center gap-2">
+          <ShieldCheck className="text-primary" size={20} />
+          <h2 className="font-semibold text-text">X.509 Certificate Decoder</h2>
+        </div>
+        {pem && (
+          <button
+            onClick={() => setPem("")}
+            className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+            title="Clear"
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
       </div>
 
       <div className="flex flex-1 overflow-hidden">

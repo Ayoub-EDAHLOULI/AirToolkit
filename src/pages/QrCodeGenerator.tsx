@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { QrCode, Copy, Check, Download } from "lucide-react";
+import { QrCode, Copy, Check, Download, Trash2 } from "lucide-react";
 import QRCode from "qrcode";
 import { save } from "@tauri-apps/plugin-dialog";
 import { writeFile } from "@tauri-apps/plugin-fs";
@@ -64,9 +64,20 @@ export default function QrCodeGenerator() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border shrink-0">
-        <QrCode className="text-primary" size={20} />
-        <h2 className="font-semibold text-text">QR Code Generator</h2>
+      <div className="flex items-center justify-between px-6 h-16 border-b border-border shrink-0">
+        <div className="flex items-center gap-2">
+          <QrCode className="text-primary" size={20} />
+          <h2 className="font-semibold text-text">QR Code Generator</h2>
+        </div>
+        {text && (
+          <button
+            onClick={() => setText("")}
+            className="p-2 rounded-lg text-subText hover:bg-inputBg transition-colors"
+            title="Clear"
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
