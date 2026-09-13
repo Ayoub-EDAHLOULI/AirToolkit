@@ -34,6 +34,7 @@ import StringEscape from "./pages/StringEscape";
 import JsonDiff from "./pages/JsonDiff";
 import NetworkPorts from "./pages/NetworkPorts";
 import CurlBuilder from "./pages/CurlBuilder";
+import JsonSchemaValidator from "./pages/JsonSchemaValidator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -70,6 +71,7 @@ const BUILT_PATHS = [
   "/json-diff",
   "/ports",
   "/curl",
+  "/json-schema",
 ];
 
 export default function App() {
@@ -110,6 +112,7 @@ export default function App() {
           <Route path="/json-diff" element={<JsonDiff />} />
           <Route path="/ports" element={<NetworkPorts />} />
           <Route path="/curl" element={<CurlBuilder />} />
+          <Route path="/json-schema" element={<JsonSchemaValidator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (

@@ -107,17 +107,18 @@ when it ships.
 More utilities identified as filling real gaps the first 32 tools didn't
 cover:
 
-- [ ] String escape/unescape helper — JSON string escaping, shell quoting,
+- [x] String escape/unescape helper — JSON string escaping, shell quoting,
       SQL string literals, and regex special characters in one tool
-- [ ] JSON structural diff — compares two JSON documents by key/value
+- [x] JSON structural diff — compares two JSON documents by key/value
       rather than by line, avoiding false differences from re-ordering or
       formatting that the line-based Diff Tool would show
-- [ ] Network port reference — searchable lookup of common ports (443,
+- [x] Network port reference — searchable lookup of common ports (443,
       3306, 6379, etc.) and what typically runs on them, same shape as the
       HTTP status code reference
-- [ ] cURL ↔ request builder — parse a cURL command into method/URL/
-      headers/body, or generate a cURL command from a request; ties into
-      the existing API Request Tester
+- [x] cURL ↔ request builder — parse a cURL command (including real
+      multi-line browser devtools output) into method/URL/headers/body, or
+      generate a cURL command from a request; a standalone tool, not
+      integrated into the API Request Tester
 - [ ] JSON Schema validator — validate a JSON document against a JSON
       Schema (needs the `ajv` library)
 - [ ] Certificate / CSR generator — generate a self-signed certificate or
