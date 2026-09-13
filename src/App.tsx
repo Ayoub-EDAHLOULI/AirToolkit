@@ -35,6 +35,7 @@ import JsonDiff from "./pages/JsonDiff";
 import NetworkPorts from "./pages/NetworkPorts";
 import CurlBuilder from "./pages/CurlBuilder";
 import JsonSchemaValidator from "./pages/JsonSchemaValidator";
+import CertGenerator from "./pages/CertGenerator";
 import { tools } from "./tools";
 import "./App.css";
 
@@ -72,6 +73,7 @@ const BUILT_PATHS = [
   "/ports",
   "/curl",
   "/json-schema",
+  "/csr",
 ];
 
 export default function App() {
@@ -113,6 +115,7 @@ export default function App() {
           <Route path="/ports" element={<NetworkPorts />} />
           <Route path="/curl" element={<CurlBuilder />} />
           <Route path="/json-schema" element={<JsonSchemaValidator />} />
+          <Route path="/csr" element={<CertGenerator />} />
           {tools
             .filter((tool) => !BUILT_PATHS.includes(tool.path))
             .map((tool) => (
