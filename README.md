@@ -131,9 +131,6 @@ cover:
 
 ### Phase 6 — final polish round
 
-- [x] Regex cheat sheet — folded into the existing Regex Tester as a
-      toggleable side panel rather than a new sidebar entry (built back in
-      Phase 1, not a new tool)
 - [x] Base64 file encoder — open any file via the native dialog and get its
       base64 (or data URI) encoding, or paste base64 back and save it to a
       file; complements the existing text-only Encode/Decode tool
@@ -146,12 +143,66 @@ cover:
 
 ## Offline Verification
 
-**TODO:** Each release should be verified with OS-level network blocking
-(e.g. Windows Firewall outbound rules, or running the packaged binary in a
-network-isolated VM) to confirm zero outbound calls before it's tagged as
-verified. No release has been verified this way yet — treat any offline claim
-as unverified until this section is updated with an actual test procedure and
-results.
+AirToolkit's zero-network-calls claim is checked two ways: a static code
+audit (done on every change) and an OS-level runtime block (done before
+tagging a release). Both are described below so the claim is reproducible,
+not just asserted.
+
+### 1. Static code audit
+
+Run these from the repo root. Each should return **no matches**, or matches
+only inside `src/pages/ApiTester.tsx` (the one deliberate exception — see
+Phase 3 notes above):
+
+```bash
+# Browser-side network primitives
+grep -rn "fetch(\|XMLHttpRequest\|WebSocket\|EventSource\|sendBeacon" src/
+
+# Rust-side network primitives (Tauri's HTTP plugin itself is expected —
+# it's what ApiTester.tsx calls into; anything beyond that is not)
+grep -rn "reqwest\|TcpStream\|UdpSocket" src-tauri/src/
+```
+
+Also confirm `src-tauri/tauri.conf.json` has no `updater`/`analytics` config
+block (Tauri's auto-updater is opt-in and must be explicitly configured —
+absence of the block means it's off), and check `src-tauri/capabilities/*`
+for the exact scope granted to `http:default` — it should be no broader than
+required by the API Request Tester.
+
+### 2. OS-level runtime block (Windows Firewall)
+
+Build the release binary, then block all outbound traffic for it and confirm
+every tool except the API Request Tester still works fully:
+
+```powershell
+# Build the release binary first: npm run tauri build
+$exe = "src-tauri\target\release\airtoolkit.exe"
+New-NetFirewallRule -DisplayName "AirToolkit-Block-Out" -Direction Outbound `
+  -Program (Resolve-Path $exe) -Action Block
+```
+
+With the rule active, launch the app and exercise a cross-section of tools
+(JSON formatter, hash/UUID generator, JWT decoder, cert generator, hex
+inspector, etc.) — all should work identically to an unblocked run, since
+none of them touch the network. The API Request Tester is expected to fail
+to connect while the rule is active — that failure is itself confirmation
+the block is working and that tool is the only one making real requests.
+
+Remove the rule when done:
+
+```powershell
+Remove-NetFirewallRule -DisplayName "AirToolkit-Block-Out"
+```
+
+For a stronger guarantee, run the same build inside a network-isolated VM
+(no virtual NIC, or a host-only adapter with no NAT) instead of relying on
+a firewall rule.
+
+**Status:** the static audit above has been run against the current
+codebase (all Phase 1–6 tools) with no unexpected matches. The OS-level
+firewall/VM run is a manual step the user needs to perform on their own
+machine before tagging a release as offline-verified — it hasn't been run
+against a signed release build yet.
 
 ## Getting Started
 
