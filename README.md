@@ -1,33 +1,241 @@
+<div align="center">
+
+<img src="src-tauri/icons/128x128.png" alt="AirToolkit logo" width="112" />
+
 # AirToolkit
 
-AirToolkit is an offline-first developer toolbox for air-gapped and locked-down
-Windows machines. It bundles the everyday utilities developers reach for —
-JSON formatting, regex testing, encode/decode, hashing, UUID generation, JWT
-decoding, diffing, timestamp conversion, case conversion, and number base
-conversion — into a single desktop app that makes **zero network calls of any
-kind**: no telemetry, no auto-update, no external requests, ever. Built with
-Tauri, React, and TypeScript.
+**The developer toolbox for machines that can't reach the internet.**
 
-## Motivation
+38 everyday dev & IT utilities in one native desktop app — with **zero network calls**.
+No telemetry. No auto-update. No CDNs. No phone-home. Ever.
 
-This project came out of a real need: working on internet-restricted VMs at a
-B2B security/access-control company, where pulling up a browser-based JSON
-formatter or regex tester simply isn't an option. Most "offline" dev tool
-sites still ship analytics, font CDNs, or update checks that fail loudly (or
-silently phone home) the moment they're blocked. AirToolkit is built to have
-no network dependency at all, verifiable at the OS level.
+[![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)](#getting-started)
+[![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?logo=tauri&logoColor=white)](https://tauri.app/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Rust](https://img.shields.io/badge/Rust-native-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Network calls](https://img.shields.io/badge/network%20calls-0-success)](#-offline-verification)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-It's also maintained as an open portfolio project.
+[Features](#-whats-inside) · [Why](#-why-airtoolkit) · [Offline verification](#-offline-verification) · [Getting started](#-getting-started) · [Roadmap](#-roadmap)
 
-## Tech Stack
+<br />
 
-- [Tauri](https://tauri.app/) (Rust) — native shell, packaging, zero-network runtime
-- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) — UI
-- Rust — backend/native logic
+<img src="docs/assets/airtoolkit-demo.gif" alt="AirToolkit demo — browsing and using tools fully offline" width="900" />
 
-## Feature Roadmap
+</div>
 
-### Phase 1 — MVP (done)
+---
+
+## ✈️ Why AirToolkit
+
+AirToolkit came out of a real need: working on internet-restricted VMs at a
+B2B security/access-control company, where opening a browser-based JSON
+formatter or regex tester simply isn't an option.
+
+Most "offline" dev-tool sites still ship analytics, font CDNs, or update
+checks that fail loudly — or silently phone home — the moment they're
+blocked. Pasting a production JWT, a private key, or a customer `.env` file
+into a random website is a non-starter in a security-sensitive environment.
+
+AirToolkit takes the opposite approach:
+
+| Principle | What it means |
+| --- | --- |
+| 🔒 **Air-gapped by design** | The app makes no unsolicited network requests — verifiable at the OS level, not just promised. |
+| 🧳 **Everything bundled** | Fonts, libraries, and assets ship inside the binary. Nothing is fetched at runtime. |
+| 🖥️ **Native & lightweight** | A Tauri (Rust) shell instead of Electron — small install, fast startup, low memory. |
+| 🕵️ **Your data stays local** | Tokens, certificates, keys, and logs are processed on-device and never leave it. |
+| 🧰 **One app, many tools** | Stop juggling a dozen bookmarks you can't open anyway. |
+
+> AirToolkit is also maintained as an open portfolio project.
+
+---
+
+## 🧰 What's Inside
+
+38 tools, grouped by what you're trying to get done.
+
+<table>
+<tr>
+<td valign="top" width="50%">
+
+### 📝 Data & Formats
+- **JSON Formatter / Validator**
+- **JSON Structural Diff** — compare by key/value, not by line
+- **JSON Schema Validator** — powered by `ajv`
+- **JSON ↔ YAML / TOML Converter**
+- **XML / CSV Formatter** — pretty-print, minify, table view
+- **SQL Formatter**
+- **Markdown Previewer** — live, sanitized rendering
+
+### 🔐 Security & Crypto
+- **JWT Decoder**
+- **Hash / UUID Generator**
+- **X.509 Certificate Decoder**
+- **Certificate / CSR Generator** — RSA 2048/4096 or ECDSA P-256, keys generated locally
+- **Password / Secret Strength Checker** — entropy, crack-time, pattern detection, generator
+
+### 🔤 Text & Encoding
+- **Encode / Decode** — Base64, URL, HTML entities
+- **String Escape / Unescape** — JSON, shell, SQL, regex
+- **Regex Tester**
+- **Diff Tool**
+- **Case Converter**
+- **Text Utilities** — sort, dedupe, normalize, count
+
+</td>
+<td valign="top" width="50%">
+
+### 🌐 Network & API
+- **API Request Tester** ¹ — with built-in HTTP status reference
+- **cURL ↔ Request Builder** — parses real devtools output
+- **URL Parser / Builder**
+- **Subnet / CIDR Calculator**
+- **Network Port Reference**
+
+### 🛠️ DevOps & IT
+- **Cron Expression Explainer** — plus next 5 run times
+- **Log Parser / Grep** — filters, invert-match, top repeated lines
+- **dotenv Diff & Validator**
+- **Timestamp Converter**
+- **Number Base Converter**
+- **System Info Panel** — OS, arch, locale, hostname, CPU, display
+
+### 🎨 Files, Images & Media
+- **Hex / Binary File Inspector** — hex dump + magic-byte detection
+- **Base64 File Encoder** — file ↔ base64 / data URI
+- **QR Code Generator & Reader**
+- **Favicon / Image Asset Generator** — 8 PNG sizes + multi-res `.ico`
+- **Color Tools** — HEX ↔ RGB ↔ HSL ↔ CMYK
+- **Color Palette Extractor** — k-means dominant colors
+- **Fake Data Generator** — names, emails, addresses, companies…
+- **Scratchpad** — local multi-note notepad
+
+</td>
+</tr>
+</table>
+
+<sub>¹ The API Request Tester is the single deliberate exception to the zero-network posture — see below.</sub>
+
+### A note on the API Request Tester
+
+AirToolkit's core promise is that the **app itself** never makes a network
+call on its own. The API Request Tester is an explicit, opt-in exception:
+its entire purpose is to send an HTTP request **you** compose, on demand, to
+a service on your own network. It changes nothing about the app's own
+behavior — it still makes zero unsolicited calls — and this is called out in
+the tool's own UI.
+
+---
+
+## 🛡️ Offline Verification
+
+"Offline" is a claim worth checking, not just asserting. AirToolkit's
+zero-network guarantee is verified two ways.
+
+### 1. Static code audit — on every change
+
+Run from the repo root. Each command should return **no matches**, or
+matches only inside `src/pages/ApiTester.tsx`:
+
+```bash
+# Browser-side network primitives
+grep -rn "fetch(\|XMLHttpRequest\|WebSocket\|EventSource\|sendBeacon" src/
+
+# Rust-side network primitives (Tauri's HTTP plugin itself is expected —
+# it's what ApiTester.tsx calls into; anything beyond that is not)
+grep -rn "reqwest\|TcpStream\|UdpSocket" src-tauri/src/
+```
+
+Then confirm:
+
+- `src-tauri/tauri.conf.json` has **no** `updater` or analytics block.
+  Tauri's auto-updater is opt-in, so its absence means it's off.
+- `src-tauri/capabilities/*` — the `http:default` permission is the only
+  network capability granted, and it exists solely for the API Request
+  Tester (its URL scope is open because the target host is whatever you
+  type into that tool).
+
+### 2. OS-level runtime block — before each release
+
+Build the release binary, block all of its outbound traffic, and confirm
+every tool except the API Request Tester still works identically:
+
+```powershell
+# Build first: npm run tauri build
+$exe = "src-tauri\target\release\airtoolkit.exe"
+New-NetFirewallRule -DisplayName "AirToolkit-Block-Out" -Direction Outbound `
+  -Program (Resolve-Path $exe) -Action Block
+```
+
+Exercise a cross-section of tools (JSON formatter, hash/UUID, JWT decoder,
+cert generator, hex inspector…). All should behave exactly as on an
+unblocked run. The API Request Tester is **expected** to fail while the rule
+is active — that failure confirms both that the block works and that it is
+the only tool making real requests.
+
+Clean up afterwards:
+
+```powershell
+Remove-NetFirewallRule -DisplayName "AirToolkit-Block-Out"
+```
+
+> 💡 For an even stronger guarantee, run the build inside a network-isolated
+> VM (no virtual NIC, or a host-only adapter with no NAT).
+
+**Status:** the static audit passes against the current codebase (all
+Phase 1–6 tools) with no unexpected matches. The OS-level firewall/VM run
+has not yet been performed against a signed release build.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS)
+- [Rust](https://www.rust-lang.org/tools/install) (stable)
+- Tauri's Windows prerequisites — Microsoft C++ Build Tools and WebView2
+  ([guide](https://tauri.app/start/prerequisites/))
+
+### Run in development
+
+```bash
+git clone https://github.com/Ayoub-EDAHLOULI/AirToolkit.git
+cd AirToolkit
+npm install
+npm run tauri dev
+```
+
+### Build a release binary
+
+```bash
+npm run tauri build
+```
+
+The installer and executable are written to `src-tauri/target/release/`.
+Copy them onto your air-gapped machine — no further downloads required.
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Native shell | [Tauri 2](https://tauri.app/) (Rust) — packaging, file dialogs, OS info |
+| UI | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Tailwind CSS](https://tailwindcss.com/) |
+| Build | [Vite](https://vite.dev/) |
+| Key libraries | `@peculiar/x509`, `ajv`, `js-yaml`, `@iarna/toml`, `sql-formatter`, `marked` + `dompurify`, `qrcode`, `jsqr`, `cron-parser`, `cronstrue`, `@faker-js/faker` |
+
+Every dependency is bundled at build time — nothing is loaded from a CDN.
+
+---
+
+## 🗺️ Roadmap
+
+<details>
+<summary><b>Phase 1 — MVP</b> ✅</summary>
 
 - [x] JSON formatter / validator
 - [x] Regex tester
@@ -39,178 +247,84 @@ It's also maintained as an open portfolio project.
 - [x] Case converter
 - [x] Number base converter
 
-### Phase 2 — low complexity (done)
+</details>
 
-- [x] XML / CSV formatter — pretty-print/minify XML, validate well-formedness;
-      CSV → table view with delimiter/quote handling
-- [x] Color Tools — HEX ↔ RGB ↔ HSL ↔ CMYK conversion with a visual picker
-- [x] Markdown previewer — live-rendered markdown as you type
-- [x] SQL formatter — beautify minified SQL into readable, indented output
-- [x] Fake data generator — names, emails, UUIDs, addresses, phone numbers,
-      and company names for seeding test data
-- [x] QR code generator — text/URL → QR image, with copy-as-data-URI and
-      save-to-PNG (reading/scanning is a separate, later item — see Phase 3)
+<details>
+<summary><b>Phase 2 — Low complexity</b> ✅</summary>
 
-Base64 image ↔ data URI support will be added as a mode inside the existing
-Encode/Decode tool rather than a new sidebar entry.
+- [x] XML / CSV formatter
+- [x] Color tools
+- [x] Markdown previewer
+- [x] SQL formatter
+- [x] Fake data generator
+- [x] QR code generator
 
-### Phase 3 — higher complexity or expanded capability surface
+</details>
 
-- [x] Cron expression parser/explainer — human-readable explanation of a
-      cron string plus next 5 run times
-- [x] X.509 certificate decoder — issuer/subject/validity/SANs/key algorithm
-      from a pasted PEM cert
-- [x] Favicon/image asset generator — one image in, PNGs at 8 standard sizes
-      out, plus a multi-resolution favicon.ico; the first tool to use the
-      folder-picker (`dialog:allow-open`) alongside the save-file capability
-      already added for the QR code generator
-- [x] Color palette extractor — dominant colors from an uploaded image via
-      k-means clustering
-- [x] QR code reader — decode an uploaded QR image back to text, completing
-      the QR pair alongside the generator
-- [x] Offline API request tester — see the note below; this is the one
-      deliberate exception to AirToolkit's zero-network-calls posture
+<details>
+<summary><b>Phase 3 — Expanded capability surface</b> ✅</summary>
 
-**A note on the API request tester:** AirToolkit's core promise is that the
-_app itself_ never makes a network call on its own — no telemetry, no
-auto-update, no phone-home, ever. The planned API request tester is a
-deliberate, explicit exception to that: its entire purpose is letting you
-compose and send an HTTP request to a service on your own network, on
-demand. It changes nothing about the app's own behavior — it still makes
-zero unsolicited calls — but it is the one tool whose job is to make a call
-_you_ tell it to make. This will be called out again in that tool's own UI
-when it ships.
+- [x] Cron expression parser / explainer
+- [x] X.509 certificate decoder
+- [x] Favicon / image asset generator
+- [x] Color palette extractor
+- [x] QR code reader
+- [x] API request tester (the deliberate network exception)
 
-### Phase 4 — additional developer/IT utilities
+</details>
 
-- [x] URL parser/builder — break a URL into scheme/host/port/path/query/
-      fragment as editable fields, and rebuild it from edits
-- [x] Subnet / CIDR calculator — network address, broadcast address, usable
-      host range, and host count from an IP + CIDR
-- [x] Text utilities — line sort, deduplicate, whitespace/line-ending
-      normalization, character/word/line counts
-- [x] Password / secret strength checker — entropy estimate, crack-time
-      estimate, common-pattern detection (sequential, keyboard walk,
-      dictionary word), and a strong-password generator
-- [x] Log parser / grep — filter multi-line log output by pattern, with
-      case-insensitive/invert-match options and a most-repeated-lines panel
-- [x] dotenv diff & validator — compare two `.env` files, flag missing/extra
-      keys, differing values, empty values, and duplicate keys
-- [x] JSON ↔ YAML / TOML converter — bidirectional, using js-yaml and
-      @iarna/toml
-- [x] HTTP status code reference — searchable lookup with descriptions,
-      surfaced as a toggleable panel inside the API Request Tester rather
-      than a separate sidebar entry
+<details>
+<summary><b>Phase 4 — Developer / IT utilities</b> ✅</summary>
 
-### Phase 5 — planned
+- [x] URL parser / builder
+- [x] Subnet / CIDR calculator
+- [x] Text utilities
+- [x] Password / secret strength checker
+- [x] Log parser / grep
+- [x] dotenv diff & validator
+- [x] JSON ↔ YAML / TOML converter
+- [x] HTTP status code reference (panel inside the API Request Tester)
 
-More utilities identified as filling real gaps the first 32 tools didn't
-cover:
+</details>
 
-- [x] String escape/unescape helper — JSON string escaping, shell quoting,
-      SQL string literals, and regex special characters in one tool
-- [x] JSON structural diff — compares two JSON documents by key/value
-      rather than by line, avoiding false differences from re-ordering or
-      formatting that the line-based Diff Tool would show
-- [x] Network port reference — searchable lookup of common ports (443,
-      3306, 6379, etc.) and what typically runs on them, same shape as the
-      HTTP status code reference
-- [x] cURL ↔ request builder — parse a cURL command (including real
-      multi-line browser devtools output) into method/URL/headers/body, or
-      generate a cURL command from a request; a standalone tool, not
-      integrated into the API Request Tester
-- [x] JSON Schema validator — validate a JSON document against a JSON
-      Schema, using the `ajv` library
-- [x] Certificate / CSR generator — generate a self-signed certificate or
-      CSR locally, extending `@peculiar/x509` (already a dependency of the
-      X.509 Certificate Decoder); RSA 2048/4096 or ECDSA P-256, with the
-      private key generated locally and never leaving the device
-- [x] Hex/binary file inspector — open a file via the native file dialog,
-      see its hex dump and detected magic bytes/file type; the first
-      byte-level (rather than text-level) tool in the app
+<details>
+<summary><b>Phase 5 — Filling the gaps</b> ✅</summary>
 
-### Phase 6 — final polish round
+- [x] String escape / unescape helper
+- [x] JSON structural diff
+- [x] Network port reference
+- [x] cURL ↔ request builder
+- [x] JSON Schema validator
+- [x] Certificate / CSR generator
+- [x] Hex / binary file inspector
 
-- [x] Base64 file encoder — open any file via the native dialog and get its
-      base64 (or data URI) encoding, or paste base64 back and save it to a
-      file; complements the existing text-only Encode/Decode tool
-- [x] System info panel — platform, OS version, architecture, locale,
-      hostname, screen/viewport size, and CPU core count, read locally via
-      `tauri-plugin-os`; useful for quick IT triage on a locked-down machine
-- [x] Scratchpad — a simple local multi-note notepad for jotting things down
-      mid-task, persisted via `localStorage` (per-machine only, never
-      synced or exported automatically)
+</details>
 
-## Offline Verification
+<details>
+<summary><b>Phase 6 — Final polish</b> ✅</summary>
 
-AirToolkit's zero-network-calls claim is checked two ways: a static code
-audit (done on every change) and an OS-level runtime block (done before
-tagging a release). Both are described below so the claim is reproducible,
-not just asserted.
+- [x] Base64 file encoder
+- [x] System info panel
+- [x] Scratchpad
 
-### 1. Static code audit
+</details>
 
-Run these from the repo root. Each should return **no matches**, or matches
-only inside `src/pages/ApiTester.tsx` (the one deliberate exception — see
-Phase 3 notes above):
+**Up next:** signed release build and a completed OS-level offline verification run.
 
-```bash
-# Browser-side network primitives
-grep -rn "fetch(\|XMLHttpRequest\|WebSocket\|EventSource\|sendBeacon" src/
+---
 
-# Rust-side network primitives (Tauri's HTTP plugin itself is expected —
-# it's what ApiTester.tsx calls into; anything beyond that is not)
-grep -rn "reqwest\|TcpStream\|UdpSocket" src-tauri/src/
-```
+## 🤝 Contributing
 
-Also confirm `src-tauri/tauri.conf.json` has no `updater`/`analytics` config
-block (Tauri's auto-updater is opt-in and must be explicitly configured —
-absence of the block means it's off), and check `src-tauri/capabilities/*`
-for the exact scope granted to `http:default` — it should be no broader than
-required by the API Request Tester.
+Issues and pull requests are welcome. The one non-negotiable rule:
+**no new network calls.** Any change must keep the static audit above
+clean, and new dependencies must be fully bundleable (no runtime CDN or
+remote assets).
 
-### 2. OS-level runtime block (Windows Firewall)
+## 📄 License
 
-Build the release binary, then block all outbound traffic for it and confirm
-every tool except the API Request Tester still works fully:
+Released under the [MIT License](LICENSE).
 
-```powershell
-# Build the release binary first: npm run tauri build
-$exe = "src-tauri\target\release\airtoolkit.exe"
-New-NetFirewallRule -DisplayName "AirToolkit-Block-Out" -Direction Outbound `
-  -Program (Resolve-Path $exe) -Action Block
-```
-
-With the rule active, launch the app and exercise a cross-section of tools
-(JSON formatter, hash/UUID generator, JWT decoder, cert generator, hex
-inspector, etc.) — all should work identically to an unblocked run, since
-none of them touch the network. The API Request Tester is expected to fail
-to connect while the rule is active — that failure is itself confirmation
-the block is working and that tool is the only one making real requests.
-
-Remove the rule when done:
-
-```powershell
-Remove-NetFirewallRule -DisplayName "AirToolkit-Block-Out"
-```
-
-For a stronger guarantee, run the same build inside a network-isolated VM
-(no virtual NIC, or a host-only adapter with no NAT) instead of relying on
-a firewall rule.
-
-**Status:** the static audit above has been run against the current
-codebase (all Phase 1–6 tools) with no unexpected matches. The OS-level
-firewall/VM run is a manual step the user needs to perform on their own
-machine before tagging a release as offline-verified — it hasn't been run
-against a signed release build yet.
-
-## Getting Started
-
-```bash
-npm install
-npm run tauri dev
-```
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+<div align="center">
+<br />
+<sub>Built for the machines the internet forgot. ✈️</sub>
+</div>
