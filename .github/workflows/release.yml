@@ -1,0 +1,59 @@
+# Builds the Windows installers (NSIS setup.exe + MSI) and attaches them to a
+# draft GitHub release. The Store MSIX is built separately by store.yml from
+# the same tag.
+#
+# Release a new version:
+#   1. Bump "version" in src-tauri/tauri.conf.json (and package.json / Cargo.toml)
+#   2. Commit, then: git tag v0.1.1 && git push origin v0.1.1
+#   3. Review the draft release on GitHub, write the notes, click "Publish release"
+#
+# No secrets needed: AirToolkit has no auto-updater, so there is no updater
+# signing key and no latest.json.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      - run: npm ci
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: v__VERSION__
+          releaseName: AirToolkit v__VERSION__
+          releaseBody: |
+            Offline-first developer toolbox for air-gapped and locked-down Windows machines.
+
+            ## Downloads
+            - `airtoolkit___VERSION___x64-setup.exe` — NSIS installer (recommended)
+            - `airtoolkit___VERSION___x64_en-US.msi` — MSI installer
+
+            Also available on the [Microsoft Store](https://apps.microsoft.com/detail/9P1T6L9P6FZ0).
+          # Draft first so you can review the notes and files before users get it
+          releaseDraft: true
+          prerelease: false
