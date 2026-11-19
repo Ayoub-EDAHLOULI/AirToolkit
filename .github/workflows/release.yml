@@ -4,7 +4,7 @@
 #
 # Release a new version:
 #   1. Bump "version" in src-tauri/tauri.conf.json (and package.json / Cargo.toml)
-#   2. Commit, then: git tag v0.1.1 && git push origin v0.1.1
+#   2. Commit, then: git tag v0.1.2 && git push origin v0.1.2
 #   3. Review the draft release on GitHub, write the notes, click "Publish release"
 #
 # No secrets needed: AirToolkit has no auto-updater, so there is no updater
