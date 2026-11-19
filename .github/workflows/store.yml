@@ -1,0 +1,78 @@
+# Builds the unsigned MSIX for the Microsoft Store.
+# Runs on every v* tag, or manually from the Actions tab.
+#
+# Release a new Store version:
+#   1. Bump "version" in src-tauri/tauri.conf.json (and package.json / Cargo.toml)
+#   2. Commit, then: git tag v0.1.1 && git push origin v0.1.1
+#   3. Download the "airtoolkit-msix" artifact from the run and upload it
+#      to Partner Center (Microsoft signs it after certification)
+name: Store MSIX
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  msix:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      - run: npm ci
+
+      # Plain exe only; the MSIX is packed by hand below
+      - name: Build exe
+        run: npx tauri build --no-bundle
+
+      - name: Stage package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory msix-staging | Out-Null
+          Copy-Item src-tauri\target\release\airtoolkit.exe msix-staging\
+          Copy-Item Assets msix-staging\Assets -Recurse
+
+          # Take the version from tauri.conf.json so the manifest can never drift
+          $v = (Get-Content src-tauri\tauri.conf.json -Raw | ConvertFrom-Json).version
+          (Get-Content Package.appxmanifest -Raw) `
+            -replace '(<Identity[^>]*Version=")[^"]*"', "`${1}$v.0`"" |
+            Set-Content msix-staging\AppxManifest.xml -Encoding utf8
+          "MSIX_VERSION=$v.0" >> $env:GITHUB_ENV
+
+      - name: Pack MSIX (Windows SDK)
+        shell: pwsh
+        run: |
+          # Fail the step if makepri/makeappx exit with an error
+          $PSNativeCommandUseErrorActionPreference = $true
+
+          # Newest installed SDK that actually ships both tools. Sort the version
+          # folders (10.0.x.y) as versions: old SDKs like 10.0.14393 lack makepri.
+          $sdk = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\10.*" -Directory |
+                 Where-Object { (Test-Path "$($_.FullName)\x64\makepri.exe") -and (Test-Path "$($_.FullName)\x64\makeappx.exe") } |
+                 Sort-Object { [version]$_.Name } -Descending | Select-Object -First 1
+          if (-not $sdk) { throw "No Windows SDK with makepri.exe and makeappx.exe found" }
+          $bin = "$($sdk.FullName)\x64"
+          Write-Host "Using Windows SDK $($sdk.Name)"
+
+          & "$bin\makepri.exe" createconfig /cf priconfig.xml /dq en-US /pv 10.0.0 /o
+          & "$bin\makepri.exe" new /pr msix-staging /cf priconfig.xml /mn msix-staging\AppxManifest.xml /of msix-staging\resources.pri /o
+          & "$bin\makeappx.exe" pack /d msix-staging /p "AirToolkit_${env:MSIX_VERSION}_x64.msix" /o
+
+      # Unsigned on purpose: Microsoft signs it after Store certification.
+      # Kept as a workflow artifact only; users can't install an unsigned MSIX.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: airtoolkit-msix
+          path: AirToolkit_*_x64.msix

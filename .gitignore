@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Development certificate
+devcert.pfx
+devcert.cer
+
+# MSIX packaging output
+msix-staging/
+priconfig.xml
+*.msix
