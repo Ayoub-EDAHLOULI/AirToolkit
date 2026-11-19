@@ -13,7 +13,8 @@
   <Identity
     Name="AyoubEdahlouli.AirToolkit"
     Publisher="CN=3F23C282-C55B-4E6D-B00E-682426399DDE"
-    Version="0.1.2.0" />
+    Version="0.1.2.0"
+    ProcessorArchitecture="x64" />
 
   <Properties>
     <DisplayName>AirToolkit</DisplayName>
