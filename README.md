@@ -9,6 +9,8 @@
 38 everyday dev & IT utilities in one native desktop app — with **zero network calls**.
 No telemetry. No auto-update. No CDNs. No phone-home. Ever.
 
+<a href="https://apps.microsoft.com/detail/9P1T6L9P6FZ0"><img src="docs/assets/ms-store-badge.svg" alt="Get it from Microsoft" height="48" /></a>
+
 [![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows&logoColor=white)](#getting-started)
 [![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?logo=tauri&logoColor=white)](https://tauri.app/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
@@ -192,14 +194,25 @@ has not yet been performed against a signed release build.
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Install
+
+- **[Microsoft Store](https://apps.microsoft.com/detail/9P1T6L9P6FZ0)** (recommended): signed by
+  Microsoft, so Windows shows a verified publisher, and installs without admin rights.
+- **[GitHub Releases](https://github.com/Ayoub-EDAHLOULI/AirToolkit/releases/latest)**: the
+  `setup.exe` or `.msi`, for machines with no Store access. Copy the file onto the
+  air-gapped machine and install it there. These installers are not code-signed yet, so
+  Windows SmartScreen may show an "unknown publisher" warning.
+
+### Build from source
+
+#### Prerequisites
 
 - [Node.js](https://nodejs.org/) (LTS)
 - [Rust](https://www.rust-lang.org/tools/install) (stable)
 - Tauri's Windows prerequisites — Microsoft C++ Build Tools and WebView2
   ([guide](https://tauri.app/start/prerequisites/))
 
-### Run in development
+#### Run in development
 
 ```bash
 git clone https://github.com/Ayoub-EDAHLOULI/AirToolkit.git
@@ -208,7 +221,7 @@ npm install
 npm run tauri dev
 ```
 
-### Build a release binary
+#### Build a release binary
 
 ```bash
 npm run tauri build
